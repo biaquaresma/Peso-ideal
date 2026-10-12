@@ -1,0 +1,54 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <stdbool.h>
+
+void altura(float *alt)
+{
+    bool *erro=malloc(sizeof(bool));
+    do{
+    printf("\ndigite a sua altura: ");
+    scanf("%f",alt);
+    *erro= *alt<=0|| *alt>2.5;
+    if(*erro)
+    printf("\nvalor inválido");
+    }while(*erro);
+}
+
+void sexo(char *sex)
+{
+    bool *erro=malloc(sizeof(bool));
+    do{
+    printf("\ndigite o seu sexo[M/F]: ");
+    scanf(" %c",sex);
+    *erro= *sex!='F' && *sex!='M' && *sex!='f' && *sex!='m';
+    if(*erro)
+    printf("\ndigite um caracter valido\n");
+    }while(*erro);
+}
+
+float pesoIdeal(float *alt, char *sex, float *pesideal)
+{
+    if(*sex=='F'|| *sex=='f')
+    *pesideal= (*alt *62.1) -44.7;
+    else
+    *pesideal=(*alt *72.7)-58;
+
+    printf("\nseu peso ideal e: %f\n",*pesideal);
+
+    return *pesideal;
+}
+
+int main()
+{
+    printf("\npeso ideal\n");
+    float *a=malloc(sizeof(float));
+    altura(a);
+    char *b=malloc (sizeof(char));
+    sexo(b);
+    float *pesideal=malloc(sizeof(float));
+    pesoIdeal(a,b,pesideal);
+
+    return 0;
+
+
+}
